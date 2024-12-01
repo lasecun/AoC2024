@@ -1,21 +1,51 @@
+import kotlin.math.absoluteValue
+
 fun main() {
     fun part1(input: List<String>): Int {
-        return input.size
+        val listA: MutableList<Int> = mutableListOf()
+        val listB: MutableList<Int> = mutableListOf()
+        input.forEach {
+            listA.add(it.split(" ").first().toInt())
+            listB.add(it.split(" ").last().toInt())
+        }
+
+        listA.sort()
+        listB.sort()
+
+        var distance = 0
+
+        listA.forEachIndexed { index, i ->
+            distance += (i - listB[index]).absoluteValue
+        }
+
+        return distance
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        val listA: MutableList<Int> = mutableListOf()
+        val listB: MutableList<Int> = mutableListOf()
+        input.forEach {
+            listA.add(it.split(" ").first().toInt())
+            listB.add(it.split(" ").last().toInt())
+        }
+
+        var accumulator = 0
+
+        listA.forEach { a ->
+            var counter = 0
+            listB.forEach { b ->
+                if (a == b) {
+                    counter++
+                }
+            }
+            accumulator += a * counter
+        }
+
+        return accumulator
     }
 
-    // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
-
-    // Or read a large test input from the `src/Day01_test.txt` file:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
     // Read the input from the `src/Day01.txt` file.
-    val input = readInput("Day01")
+    val input = readInput("Day01_test")
     part1(input).println()
     part2(input).println()
 }
