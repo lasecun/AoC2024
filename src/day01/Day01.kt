@@ -1,3 +1,7 @@
+package day01
+
+import println
+import readInput
 import kotlin.math.absoluteValue
 
 fun main() {
@@ -44,8 +48,7 @@ fun main() {
         return accumulator
     }
 
-    // Read the input from the `src/Day01.txt` file.
-    val input = readInput("Day01_test")
+    val input = readInput("day01/Day01_test")
     part1(input).println()
     part2(input).println()
 }
